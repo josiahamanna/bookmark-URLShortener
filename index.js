@@ -5,6 +5,14 @@ const { urlRouter } = require('./app/controllers/url-controller')
 require('./config/database')
 const { Bookmark } = require('./app/models/url')
 const useragent = require('useragent')
+const morgan = require('morgan')
+const fs = require('fs')
+
+const logStream = fs.createWriteStream('./logs/access.log', {flags: 'a'})
+
+console.log(morgan.tiny)
+
+app.use(morgan(morgan.tiny, {stream: logStream}))
 
 app.use(express.json())
 // app.use(useragent.express())
@@ -27,8 +35,7 @@ app.get('/', (req, res)=>{
 
 app.use('/bookmarks', urlRouter)
 
-app.get('/:hash', (req, res)=>{
-    console.log(getUserInfo(req))
+app.get('/hash/:hash', (req, res)=>{
     const hash = req.params.hash
     Bookmark.find({hashedUrl:hash})
         .then((url)=>{
@@ -43,5 +50,10 @@ app.get('/:hash', (req, res)=>{
         })
         .catch(err=>res.send(err))
 })
+
+app.use(function (req, res) {
+    // console.error(err.stack)
+    res.status(404).send({notice: 'Something broke!'})
+  })
 
 app.listen(port, ()=>console.log('listening on port', port))
