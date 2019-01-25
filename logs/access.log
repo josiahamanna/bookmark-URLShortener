@@ -1,0 +1,3 @@
+GET /bookmarks 200 1084 - 38.538 ms
+GET /bookmarks 200 1084 - 6.158 ms
+{ methodName: 'GET', URL: '/bookmarks', statusCode: '200', responseSize: '-', responseTime: '38.898 ms', date: '2019-01-25T17:46:50.873Z', remoteAddress: '::1', remoteUser: '-' }
