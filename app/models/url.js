@@ -4,7 +4,7 @@ const sh = require('shorthash')
 
 const { Schema } = mongoose
 
-const urlSchema = new Schema({
+const bookmarkSchema = new Schema({
     title: {
         type: String,
         required: true
@@ -25,7 +25,7 @@ const urlSchema = new Schema({
         type: [String],
         required: true
     },
-    hashedlUrl: {
+    hashedUrl: {
         type: String
     },
     createdAt: {
@@ -34,13 +34,13 @@ const urlSchema = new Schema({
     }
 })
 
-urlSchema.pre('save', function(next) {
-    this.hashedlUrl = sh.unique(this.originalUrl)
+bookmarkSchema.pre('save', function(next) {
+    this.hashedUrl = sh.unique(this.originalUrl)
     next()
 })
 
-const URL = mongoose.model('Url', urlSchema)
+const Bookmark = mongoose.model('Bookmark', bookmarkSchema)
 
 module.exports = {
-    URL
+    Bookmark
 }
