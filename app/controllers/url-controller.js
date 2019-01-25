@@ -30,13 +30,26 @@ router.post('/', (req, res) => {
 })
 
 router.get('/tags', (req, res) => {
-    const query = req.query
-    Bookmark.find({tags:{"$in": query.names.split(',')}})
+    const names = req.query.names
+    Bookmark.find({tags:{'$in': names.split(',')}})
         .then(url=>{
             if(url.length>0)
                 res.send(url)
             else
                 res.send('no match found')
+        })
+        .catch(err=>res.send(err))
+})
+
+router.get('/tags/:name', (req, res)=>{
+    const name = req.params.name
+    Bookmark.find({tags:name})
+        .then((url)=>{
+            if(url.length>0){
+                res.send(url)
+            } else {
+                res.send('no match found')
+            }
         })
         .catch(err=>res.send(err))
 })
