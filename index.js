@@ -35,13 +35,13 @@ app.get('/', (req, res)=>{
 
 app.use('/bookmarks', urlRouter)
 
-app.get('/hash/:hash', (req, res)=>{
+app.get('/:hash', (req, res)=>{
     const hash = req.params.hash
-    Bookmark.find({hashedUrl:hash})
+    Bookmark.findOne({hashedUrl:hash})
         .then((url)=>{
             if(url){
-                res.redirect(url[0].originalUrl)
-                Bookmark.findByIdAndUpdate(url[0]._id, { $push: {clicks: getUserInfo(req)}}, {new: true})
+                res.redirect(url.originalUrl)
+                Bookmark.findByIdAndUpdate(url._id, { $push: {clicks: getUserInfo(req)}}, {new: true})
                     .then(()=>console.log('hey'))
                     .catch((err)=>console.log('error updating click array', err))
             } else {
