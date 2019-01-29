@@ -1,3 +1,22 @@
 GET /bookmarks 200 1084 - 38.538 ms
 GET /bookmarks 200 1084 - 6.158 ms
 { methodName: 'GET', URL: '/bookmarks', statusCode: '200', responseSize: '-', responseTime: '38.898 ms', date: '2019-01-25T17:46:50.873Z', remoteAddress: '::1', remoteUser: '-' }
+GET / 304 - - 4.924 ms
+GET /favicon.ico 404 29 - 1.841 ms
+GET /users 404 29 - 0.336 ms
+GET /users 200 2 - 22.472 ms
+GET /booksmark 200 2 - 3.093 ms
+GET /booksmarks 200 2 - 2.636 ms
+GET /booksmarks 200 2 - 2.396 ms
+GET /booksmarks 200 2 - 1.972 ms
+GET /bookmarks 200 1084 - 12.144 ms
+GET /yGHDk 302 45 - 34.275 ms
+GET /unknow 200 2 - 2.053 ms
+GET /unknow 200 2 - 2.067 ms
+GET /unknow 200 2 - 18.457 ms
+GET /unknow 200 2 - 24.457 ms
+GET /unknow 200 2 - 27.196 ms
+GET /yGHDk 302 45 - 48.564 ms
+GET /unknown 200 16 - 5.675 ms
+GET /unknown/this 404 29 - 5.822 ms
+GET /unknown 200 16 - 13.818 ms
